@@ -8,50 +8,40 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      
-    # image: php:8.1-fpm-alpine
+       
     ports:
-      - "9000:9000"
+      - "9001:9000"
     volumes:
       - ./src:/code
 
     networks:
       - laravel
 
-  mysql:
-    # image: mysql:5.7.22
+  mysql: 
     image: mysql:8.0.31
+     
+    container_name: webdev-mysql 
+    restart: unless-stopped 
     ports:
-      - "3306:3306"
-      # - "3311:3311"
+      - "3306:3306" 
     volumes:
-      - ./docker/mysql:/var/lib/mysql
+      - ./docker/mysql:/var/lib/mysql 
     networks:
-      - laravel
+      - laravel 
     environment:
-      # MYSQL_DATABASE: homestead
-      # MYSQL_USER: homestead
-      # MYSQL_PASSWORD: secret
-      # MYSQL_ROOT_PASSWORD: secret
-      # SERVICE_TAGS: dev
-      # SERVICE_NAME: mysql
       MYSQL_DATABASE: midtrans-project
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 
-      MYSQL_ROOT_PASSWORD: 
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user
+      MYSQL_ROOT_PASSWORD: root
       SERVICE_TAGS: dev
-      SERVICE_NAME: mysql
+      SERVICE_NAME: mysql 
 
-
-  nginx:
-    # image: nginx:1.19.0-alpine
+  nginx: 
     image: nginx:1.22.0-alpine
     ports:
-      - "8080:80"
+      - "8083:80"
     volumes:
       - ./src:/code
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - laravel 
-    # command: docker-compose exec app php artisan migrate --seed
-    # entrypoint: "php artisan migrate"
+      - laravel  
