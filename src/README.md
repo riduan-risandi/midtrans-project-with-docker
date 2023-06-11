@@ -20,8 +20,8 @@ cp .env.example .env
 2. **Buka `.env` lalu ubah baris berikut sesuai dengan databasemu yang ingin dipakai**
 
 ```bash
-DB_PORT=3310
-DB_DATABASE=laravel
+DB_PORT=3306
+DB_DATABASE=midtrans_project
 DB_USERNAME=root
 DB_PASSWORD=
 ```

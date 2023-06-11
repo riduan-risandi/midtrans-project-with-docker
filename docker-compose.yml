@@ -10,7 +10,7 @@ services:
       dockerfile: Dockerfile
        
     ports:
-      - "9001:9000"
+      - "9000:9000"
     volumes:
       - ./src:/code
 
@@ -29,7 +29,7 @@ services:
     networks:
       - laravel 
     environment:
-      MYSQL_DATABASE: midtrans-project
+      MYSQL_DATABASE: midtrans_project
       MYSQL_USER: user
       MYSQL_PASSWORD: user
       MYSQL_ROOT_PASSWORD: root
@@ -39,7 +39,7 @@ services:
   nginx: 
     image: nginx:1.22.0-alpine
     ports:
-      - "8083:80"
+      - "8080:80"
     volumes:
       - ./src:/code
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
